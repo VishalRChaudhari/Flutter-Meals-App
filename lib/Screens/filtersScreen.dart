@@ -34,16 +34,17 @@ class _FilterScreenState extends ConsumerState<FilterScreen> {
         title: const Text('Your Filters'),
       ),
       body: PopScope(
-
         canPop: true,
         onPopInvoked: (bool didpop) {
-          if (didpop) return ;
-          ref.read(filtersProvider.notifier).selectedFilters({
-            Filter.glutenFree: _glutenFreeFilterSet,
-            Filter.lactoseFree: _lactoseFreeFilterSet,
-            Filter.vegan: _veganFilterSet,
-            Filter.vegetarian: _vegetarianFilterSet,
-          });
+          if (didpop) {
+            ref.read(filtersProvider.notifier).setFiters({
+              Filter.glutenFree: _glutenFreeFilterSet,
+              Filter.lactoseFree: _lactoseFreeFilterSet,
+              Filter.vegan: _veganFilterSet,
+              Filter.vegetarian: _vegetarianFilterSet,
+            });
+          } else
+            return;
         },
         child: Column(
           children: [

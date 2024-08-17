@@ -27,8 +27,6 @@ class TabsScreen extends ConsumerStatefulWidget {
 class _TabsScreen extends ConsumerState<TabsScreen> {
   var _selectedIndex = 0;
 
- 
-
   void _selectedTab(int index) {
     setState(() {
       _selectedIndex = index;
@@ -42,7 +40,7 @@ class _TabsScreen extends ConsumerState<TabsScreen> {
         MaterialPageRoute(
           builder: (context) => const FilterScreen(),
         ),
-      ); 
+      );
     }
   }
 
