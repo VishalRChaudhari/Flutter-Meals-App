@@ -7,7 +7,7 @@ class Mealitem extends StatelessWidget {
   const Mealitem({super.key, required this.meal, required this.onSelectmeal});
 
   final Meal meal;
-  final  Function(Meal meal) onSelectmeal;
+  final Function(Meal meal) onSelectmeal;
 
   String get complexityText {
     return meal.complexity.name[0].toUpperCase() +
@@ -32,12 +32,15 @@ class Mealitem extends StatelessWidget {
         },
         child: Stack(
           children: [
-            FadeInImage(
-              placeholder: MemoryImage(kTransparentImage),
-              image: NetworkImage(meal.imageUrl),
-              fit: BoxFit.cover,
-              height: 200,
-              width: double.infinity,
+            Hero(
+              tag: meal.id,
+              child: FadeInImage(
+                placeholder: MemoryImage(kTransparentImage),
+                image: NetworkImage(meal.imageUrl),
+                fit: BoxFit.cover,
+                height: 200,
+                width: double.infinity,
+              ),
             ),
             Positioned(
               left: 0,

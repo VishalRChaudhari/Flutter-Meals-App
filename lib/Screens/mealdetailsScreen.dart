@@ -13,7 +13,6 @@ class MealDetailsScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     final favouriteMeal = ref.watch(favouritemealsProvider);
     final isAdded = favouriteMeal.contains(meal);
     return Scaffold(
@@ -34,8 +33,18 @@ class MealDetailsScreen extends ConsumerWidget {
                 ),
               );
             },
-            icon:  Icon(isAdded ?
-              Icons.star : Icons.star_border_outlined,
+            icon: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 300),
+              transitionBuilder: (child, animation) {
+                return RotationTransition(
+                  turns: Tween<double>(begin: 0.95, end: 1).animate(animation),
+                  child: child,
+                );
+              },
+              child: Icon(
+                isAdded ? Icons.star : Icons.star_border_outlined,
+                key: ValueKey(isAdded),
+              ),
             ),
           )
         ],
@@ -45,11 +54,14 @@ class MealDetailsScreen extends ConsumerWidget {
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-              child: Image.network(
-                meal.imageUrl,
-                width: double.infinity,
-                height: 300,
-                fit: BoxFit.cover,
+              child: Hero(
+                tag: meal.id,
+                child: Image.network(
+                  meal.imageUrl,
+                  width: double.infinity,
+                  height: 300,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             const SizedBox(height: 20),
