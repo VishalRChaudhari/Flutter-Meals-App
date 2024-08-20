@@ -30,3 +30,10 @@ class App extends StatelessWidget {
     );
   }
 }
+
+/*
+This is project built using flutter framework.
+Provider is used for state management.
+This project displays the meals and the ingredients as well as the recipes of the meals.
+we can set the meals as favourite also we can filter the meals as per our preferences.
+ */
